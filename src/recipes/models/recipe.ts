@@ -1,18 +1,13 @@
-import { Field, ID, ObjectType } from 'type-graphql';
+import { Field, ObjectType } from "type-graphql";
+import { Common } from "../../common/common";
 
 @ObjectType()
-export class Recipe {
-  @Field(type => ID)
-  id: string;
-
+export class Recipe extends Common {
   @Field()
   title: string;
 
   @Field({ nullable: true })
   description?: string;
-
-  @Field()
-  creationDate: Date;
 
   @Field(type => [String])
   ingredients: string[];
