@@ -1,4 +1,4 @@
-import { NotFoundException } from "@nestjs/common";
+import { NotFoundException, UseGuards } from "@nestjs/common";
 import { Args, Mutation, Query, Resolver, Subscription } from "@nestjs/graphql";
 import { PubSub } from "apollo-server-express";
 import { NewRecipeInput } from "./dto/new-recipe.input";
@@ -6,6 +6,7 @@ import { RecipeInput } from "./dto/recipe.input";
 import { RecipesArgs } from "./dto/recipes.args";
 import { Recipe } from "./models/recipe";
 import { RecipesService } from "./recipes.service";
+import { AuthGuard } from "@nestjs/passport";
 
 const pubSub = new PubSub();
 
@@ -23,6 +24,7 @@ export class RecipesResolver {
   }
 
   @Query(returns => [Recipe])
+  @UseGuards(AuthGuard("oauth-bearer"))
   recipes(@Args() recipesArgs: RecipesArgs): Promise<Recipe[]> {
     return this.recipesService.findAll(recipesArgs);
   }
