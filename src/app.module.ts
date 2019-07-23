@@ -18,7 +18,8 @@ import { AzureB2CStrategy } from "./common/azure.b2c.strategy";
     RecipesModule,
     GraphQLModule.forRoot({
       installSubscriptionHandlers: true,
-      autoSchemaFile: "schema.gql"
+      autoSchemaFile: "schema.gql",
+      context: ({ req }) => ({ req }),
     })
   ],
   providers: [AzureB2CStrategy]

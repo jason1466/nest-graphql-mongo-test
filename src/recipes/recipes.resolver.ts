@@ -6,7 +6,7 @@ import { RecipeInput } from "./dto/recipe.input";
 import { RecipesArgs } from "./dto/recipes.args";
 import { Recipe } from "./models/recipe";
 import { RecipesService } from "./recipes.service";
-import { AuthGuard } from "@nestjs/passport";
+import { GqlAuthGuard } from "../common/gql.authguard";
 
 const pubSub = new PubSub();
 
@@ -24,7 +24,7 @@ export class RecipesResolver {
   }
 
   @Query(returns => [Recipe])
-  @UseGuards(AuthGuard("oauth-bearer"))
+  @UseGuards(GqlAuthGuard)
   recipes(@Args() recipesArgs: RecipesArgs): Promise<Recipe[]> {
     return this.recipesService.findAll(recipesArgs);
   }
