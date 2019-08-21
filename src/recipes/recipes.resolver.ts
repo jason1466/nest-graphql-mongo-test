@@ -11,6 +11,7 @@ import { GqlAuthGuard } from "../common/gql.authguard";
 const pubSub = new PubSub();
 
 @Resolver(of => Recipe)
+@UseGuards(GqlAuthGuard)
 export class RecipesResolver {
   constructor(private readonly recipesService: RecipesService) {}
 
@@ -24,7 +25,6 @@ export class RecipesResolver {
   }
 
   @Query(returns => [Recipe])
-  @UseGuards(GqlAuthGuard)
   recipes(@Args() recipesArgs: RecipesArgs): Promise<Recipe[]> {
     return this.recipesService.findAll(recipesArgs);
   }

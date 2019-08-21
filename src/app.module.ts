@@ -1,9 +1,10 @@
-import { Module } from "@nestjs/common";
+import { Module, HttpModule } from "@nestjs/common";
 import { GraphQLModule } from "@nestjs/graphql";
 import { RecipesModule } from "./recipes/recipes.module";
 import { MongooseModule } from "@nestjs/mongoose";
 import { PassportModule } from "@nestjs/passport";
 import { AzureB2CStrategy } from "./common/azure.b2c.strategy";
+import { UsersService } from "./users/users.service";
 
 @Module({
   imports: [
@@ -19,9 +20,10 @@ import { AzureB2CStrategy } from "./common/azure.b2c.strategy";
     GraphQLModule.forRoot({
       installSubscriptionHandlers: true,
       autoSchemaFile: "schema.gql",
-      context: ({ req }) => ({ req }),
-    })
+      context: ({ req }) => ({ req })
+    }),
+    HttpModule
   ],
-  providers: [AzureB2CStrategy]
+  providers: [AzureB2CStrategy, UsersService]
 })
 export class ApplicationModule {}
