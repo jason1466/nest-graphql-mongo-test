@@ -122,11 +122,11 @@ export class AzureB2CStrategy extends PassportStrategy(BearerStrategy) {
       }
     );
 
-    let quotes: any[] = [];
-    this.usersService.getQuotes().subscribe(x => {
-      quotes = x;
-      console.log("quotes[0]: ", quotes[0]);
-    });
+    // let quotes: any[] = [];
+    // this.usersService.getQuotes().subscribe(x => {
+    //   quotes = x;
+    //   console.log("quotes[0]: ", quotes[0]);
+    // });
 
     return done(
       null,

@@ -15,11 +15,11 @@ async function bootstrap() {
   //   .then(app => app.init())
   //   .then(() => serverless.createHandler(expressApp));
   const httpsOptions = {
-    key: fs.readFileSync('./server.key'),
-    cert: fs.readFileSync('./server.crt')
+    key: fs.readFileSync("./server.key"),
+    cert: fs.readFileSync("./server.crt")
   };
   const app = await NestFactory.create(ApplicationModule, {
-    httpsOptions,
+    // httpsOptions,
   });
   app.useGlobalPipes(new ValidationPipe());
   app.enableCors({
