@@ -37,7 +37,7 @@
     "file-system": "^2.2.2",
     "graphql": "14.3.1",
     "graphql-subscriptions": "1.1.0",
-    "mongoose": "5.6.3",
+    "mongoose": "5.7.5",
     "passport": "0.4.0",
     "passport-azure-ad": "4.1.0",
     "reflect-metadata": "0.1.13",
